@@ -32,17 +32,36 @@ class Transform
 			return (vct);
 		}
 
+		int			pow(int n, int pow)
+		{
+			int		i = 0;
+			int		ret = n;
+
+			if (pow)
+			{
+				while (++i < pow)
+				{
+					ret *= n;
+				}
+			}
+			else
+				return (1);
+			return (ret);
+		}
+
 		int			reverse(int N)
 		{
-			int					i = getNumSize(N) - 1;
-			int					len = i;
+			int					len = getNumSize(N);
+			int					j = len - 1;
+			int					i = 0;
 			std::vector<int>	vct = splitNumber(N);
 			int					R = 0;
 
-			R += vct[i];
-			while (--i >= 0)
+			while (i < len)
 			{
-				R += vct[i] * (10 * (len - i));
+				R += vct[i] * pow(10, j);
+				++i;
+				--j;
 			}
 			return (R);
 		}
@@ -58,7 +77,7 @@ class Transform
 				/*
 				std::cout<< "vct[" << i << "]: " << vct[i];
 				std::cout<< " -- ";
-				std::cout<< "vct[" << size - i << "]: " << vct[size - i];
+				std::cout<< "vct[" << size - i << "]: " << vct[size - i] << 
 				std::endl;
 				*/
 				if (vct[i] != vct[size])
@@ -81,7 +100,9 @@ class Transform
 			{
 				while (!isPalindrome(P))
 				{
-					P += reverse(N);
+					P += reverse(P);
+					if (P < 0)
+						return (-1);
 				}
 			}
 			return (P);
