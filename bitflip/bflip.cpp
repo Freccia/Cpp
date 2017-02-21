@@ -88,11 +88,24 @@ class BitFlipper
 
 int		main(int ac, char **av)
 {
-	BitFlipper bfl;
+	BitFlipper	bfl;
+	char		*str;
 
 	if (ac == 2)
 		std::cout << bfl.minFlip(av[1]) << std::endl;
 	else
 		std::cout << "Wrong numer of args" << std::endl;
+	str = new char [9];
+	str[0] = 'a';
+	str[1] = 'b';
+	str[2] = 'c';
+	str[3] = 'd';
+	str[4] = 'e';
+	str[5] = 'f';
+	str[6] = 'g';
+	str[7] = 'h';
+	str[8] = '\0';
+	std::cout << str << std::endl;
+	delete[] str;
 	return (0);
 }
