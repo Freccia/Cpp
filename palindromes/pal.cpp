@@ -1,4 +1,11 @@
 
+/*
+**	Class: Transform
+**	Method: palindrome( int n )
+**
+**	The method palindrome gets a (int) n and returns a palindrome (int)
+*/
+
 #include <iostream>
 #include <string>
 #include <vector>
