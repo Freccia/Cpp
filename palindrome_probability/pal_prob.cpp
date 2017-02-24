@@ -5,6 +5,11 @@
 **	The method getProb returns the probability of getting a palindrome
 **	word with an anagram with letters of 'str'.
 **
+**	The problem is: given a string what is the probability of getting 
+**	a palindrome on an anagram of that string.
+**
+**	for example the probability for "ahah" is 1/6 = 0.3333
+**
 */
 
 #include <iostream>
@@ -22,6 +27,9 @@ class palProb
 				alfa[i] = 0;
 		}
 
+		/*
+		 *	If there is more than a pivot, no palindromes.
+		 */
 		int			checkOnePivot()
 		{
 			int		i = -1;
@@ -51,6 +59,9 @@ class palProb
 			return (n);
 		}
 
+		/*
+		 *	Count number of occurrencies of a letter and fulfill alfa[26]	
+		 */
 		void		countLetters(std::string str)
 		{
 			int		i = -1;
@@ -65,6 +76,9 @@ class palProb
 			}
 		}
 
+		/*
+		 *	Get number of possibles anagrams
+		 */
 		long		getNumAnagrams(std::string str)
 		{
 			int		i = -1;
@@ -79,6 +93,9 @@ class palProb
 			return nan;
 		}
 
+		/*
+		 *	Get number of possibles palindromes
+		 */
 		long		getNumPalindromes(std::string str)
 		{
 			int		len = str.length();
@@ -90,6 +107,10 @@ class palProb
 
 	public:
 
+		/*
+		 *	Each int will represent the number of occurrencies of a character
+		 *	For example alfa[4] represents the number of occurencies of the letter 'e' in str
+		 */
 		int		alfa[26] = {0};
 
 		float		getProb(std::string str)
