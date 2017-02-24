@@ -8,7 +8,7 @@
 **	The problem is: given a string what is the probability of getting 
 **	a palindrome on an anagram of that string.
 **
-**	for example the probability for "ahah" is 1/6 = 0.3333
+**	for example the probability for "ahah" is 2/6 = 0.3333
 **
 */
 
