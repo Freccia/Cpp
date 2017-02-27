@@ -30,16 +30,17 @@ class palProb
 		/*
 		 *	If there is more than a pivot, no palindromes.
 		 */
-		int			checkOnePivot()
+		int			checkOnePivot(int len)
 		{
 			int		i = -1;
 			int		pivot = 0;
+			int		odd = len % 2;
 
 			while (++i < 26)
 			{
 				if (alfa[i] % 2)
 				{
-					if (pivot)
+					if (pivot || !odd)
 						return (1);
 					++pivot;
 				}
@@ -76,6 +77,19 @@ class palProb
 			}
 		}
 
+		int			check_str(std::string str)
+		{
+			int		i = -1;
+
+			while (str[++i])
+			{
+				if (!(str[i] >= 'a' && str[i] <= 'z') && 
+						(str[i] >= 'A' && str[i] <= 'Z'))
+					return (1);
+			}
+			return (0);
+		}
+
 		/*
 		 *	Get number of possibles anagrams
 		 */
@@ -101,7 +115,10 @@ class palProb
 			int		len = str.length();
 			long	npal;
 
-			npal = factor(len / 2);
+			if (len > 1)
+				npal = factor(len / 2);
+			else
+				npal = 1;
 			return npal;
 		}
 
@@ -113,15 +130,15 @@ class palProb
 		 */
 		int		alfa[26] = {0};
 
-		float		getProb(std::string str)
+		double		getProb(std::string str)
 		{
-			float	ret = 0;
+			double	ret = 0;
 
-			if (str.empty())
-				return (0);
+			if (str.empty() || str.length() > 50 || check_str(str))
+				return (-1);
 			setAlfa();
 			countLetters(str);
-			if (checkOnePivot())
+			if (checkOnePivot(str.length()))
 				return (0);
 
 			long	nan = getNumAnagrams(str);
@@ -130,7 +147,7 @@ class palProb
 //			std::cout << "nan: " << nan << std::endl;
 //			std::cout << "npal: " << npal << std::endl;
 			if (nan != 0)
-				ret = (float)npal / (float)nan;
+				ret = (double)npal / (double)nan;
 			
 			return ret;
 		}
