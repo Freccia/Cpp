@@ -114,11 +114,17 @@ class palProb
 		{
 			int		len = str.length();
 			long	npal;
+			int		i = -1;
 
 			if (len > 1)
 				npal = factor(len / 2);
 			else
 				npal = 1;
+			while (++i < 26)
+			{
+				if (alfa[i] > 1)
+					npal /= factor((alfa[i] / 2));
+			}
 			return npal;
 		}
 
@@ -144,8 +150,8 @@ class palProb
 			long	nan = getNumAnagrams(str);
 			long	npal = getNumPalindromes(str);
 
-//			std::cout << "nan: " << nan << std::endl;
-//			std::cout << "npal: " << npal << std::endl;
+			std::cout << "nan: " << nan << std::endl;
+			std::cout << "npal: " << npal << std::endl;
 			if (nan != 0)
 				ret = (double)npal / (double)nan;
 			
